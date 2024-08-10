@@ -4,7 +4,8 @@ namespace Tests\Unit;
 
 use App\Models\Pets;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
+
 
 class PetTest extends TestCase
 {

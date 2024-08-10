@@ -4,22 +4,21 @@ namespace Tests\Unit;
 
 use App\Models\Pets;
 use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class CalcularDiferenciaDiasTest extends TestCase
 {
     public function test_calculates_the_number_of_days_old()
     {
-        // Crear una instancia de Pets
-        $pet = new Pets();
+         // Configuramos la fecha que quieremos probar
+         $fechaTest = now()->subDays(20);
+         $diferenciaDias = Carbon::now()->diffInDays(Carbon::parse($fechaTest));
 
-        // Fecha de prueba (10 días atrás)
-        $testDate = Carbon::now()->subDays(10)->toDateString();
+         // Crea una instancia de Pets
+         $pets = new Pets();
+         $actualDays = $pets->numberOfDaysOld($fechaTest);
 
-        // Llamar al método y obtener la diferencia
-        $daysOld = $pet->numberOfDaysOld($testDate);
-
-        // Verificar que el método calcula correctamente 10 días
-        $this->assertEquals(10, $daysOld);
+         // Verifica que el resultado sea el esperado
+         $this->assertEquals($diferenciaDias, $actualDays);
     }
 }
